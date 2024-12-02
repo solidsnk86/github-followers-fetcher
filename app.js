@@ -56,6 +56,9 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
   let page = 1;
   const url = `https://api.github.com/users/${user}/${type}`;
   let allData = [];
+  $errors.textContent = "";
+  apiStats.rateLimit = "";
+  apiStats.remaingLimit = "";
 
   while (true) {
     try {
@@ -77,10 +80,6 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       const data = await response.json();
 
       if (data.length === 0) break;
-
-      $errors.textContent = "";
-      apiStats.rateLimit = "";
-      apiStats.remaingLimit = "";
 
       allData.push(...data);
 
