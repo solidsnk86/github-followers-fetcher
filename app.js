@@ -1,3 +1,5 @@
+const $errors = document.querySelector("#errors");
+let error = "";
 const imgStyles = [
   "border: 2px solid #f0f0f0",
   "width: 45px",
@@ -55,6 +57,10 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       });
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
+
+      const rateLimit = response.headers.get("X-RateLimit-Limit");
+      error = `Límite de API ${rateLimit}`;
+
       const data = await response.json();
 
       if (data.length === 0) break;
@@ -108,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $article.innerHTML = "";
 
       if (followers.length === 0) {
-        $article.innerHTML = `
+        $errors.innerHTML = `
           <h1 style="
             width: 100%; 
             text-align: center; 
@@ -152,9 +158,14 @@ document.addEventListener("DOMContentLoaded", () => {
       nonFollowingPlaceholder.textContent = nonFollowing.length;
     } catch (err) {
       console.error("Error al inicializar la aplicación", err);
-      $article.innerHTML = `
-        <h1 style="
+      $errors.innerHTML = `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          margin: 20px auto;
           width: 100%; 
+        ">
+        <h1 style="
           text-align: center; 
           color: var(--text-color);
           padding: 20px;
@@ -169,6 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ">
           No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado.
         </p>
+        <p>Límite de API excedido: ${error}</p>
+        </div>
       `;
     }
   });
