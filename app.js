@@ -55,12 +55,13 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       const response = await fetch(`${url}?per_page=100&page=${page}`, {
         headers,
       });
-      if (!response.ok)
-        throw new Error(`HTTP error! status: ${response.status}`);
-
       const rateLimit = response.headers.get("X-RateLimit-Limit");
-      error = `Límite de API ${rateLimit}`;
+      if (!response.ok)
+        throw new Error(
+          `HTTP error! status: ${response.status}, Límite API: ${rateLimit} peticiones por hora.`
+        );
 
+      error += `Límite de API ${rateLimit}`;
       const data = await response.json();
 
       if (data.length === 0) break;
