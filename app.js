@@ -18,7 +18,9 @@ function clickSound() {
   const audio = new Audio("button-click.mp3");
   if (audio) {
     audio.volume = 0.1;
-    audio.play().catch((err) => console.error("Error playing audio", err));
+    audio
+      .play()
+      .catch((err) => console.error("Error al reproducir el audio", err));
   }
 }
 
@@ -61,7 +63,7 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
           `HTTP error! status: ${response.status}, Límite API: ${rateLimit} peticiones por hora.`
         );
 
-      error += `Límite de API ${rateLimit}`;
+      error = `Límite de API ${rateLimit}`;
       const data = await response.json();
 
       if (data.length === 0) break;
@@ -181,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ">
           No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado.
         </p>
-        <p>Límite de API excedido: ${error}</p>
+        <p>Límite de API excedido</p>
         </div>
       `;
     }
