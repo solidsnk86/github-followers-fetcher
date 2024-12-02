@@ -1,0 +1,25 @@
+{
+  "name": "github-followers-fetcher",
+  "version": "1.0.0",
+  "description": "Una aplicación para obtener y mostrar información sobre seguidores y seguidos en GitHub.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidsnk86/github-followers-fetcher.git"
+  },
+  "keywords": [
+    "GitHub",
+    "followers",
+    "following",
+    "API"
+  ],
+  "author": "Gabriel Calcagni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solidsnk86/github-followers-fetcher/issues"
+  },
+  "homepage": "https://github.com/solidsnk86/github-followers-fetcher#readme"
+}

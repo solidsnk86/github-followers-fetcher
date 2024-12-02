@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Followers Analyzer</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #0d1117;
+        --secondary-color: #161b22;
+        --accent-color: #30363d;
+        --text-color: #c9d1d9;
+        --hover-color: #21262d;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        background-color: var(--secondary-color);
+        padding: 30px;
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        color: #58a6ff;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+      }
+
+      .header h4 {
+        color: var(--text-color);
+        margin-bottom: 15px;
+      }
+
+      .info-text {
+        background-color: var(--accent-color);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+      }
+
+      .info-text a {
+        color: #58a6ff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .form-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        background-color: var(--secondary-color);
+        border-radius: 6px;
+        padding: 10px;
+      }
+
+      .input-group input {
+        background-color: var(--accent-color);
+        border: none;
+        color: var(--text-color);
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 4px;
+        width: 250px;
+      }
+
+      .input-group input::placeholder {
+        color: #6e7681;
+      }
+
+      .submit-btn {
+        background-color: #238636;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #2ea44f;
+      }
+
+      .results-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .avatars {
+        display: flex;
+        align-items: center;
+      }
+
+      .avatars img {
+        border: 2px solid #f0f0f0;
+        width: 45px;
+        height: 45px;
+        transition: transform 0.3s ease;
+      }
+
+      .avatars img:hover {
+        transform: scale(1.15);
+        z-index: 10;
+      }
+
+      .stats-table {
+        width: fit-content;
+        justify-content: center;
+        margin: 0 auto;
+        background-color: var(--secondary-color);
+        border-radius: 8px;
+      }
+
+      .stats-table th {
+        background-color: var(--accent-color);
+        color: #58a6ff;
+        padding: 15px;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      .stats-table td {
+        padding: 15px;
+        text-align: center;
+        color: var(--text-color);
+      }
+
+      .loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 100%;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(88, 166, 255, 0.2);
+        border-top: 5px solid #58a6ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      footer {
+        text-align: center;
+        margin: 20px auto;
+      }
+
+      footer a {
+        text-decoration: none;
+        color: #f0f0f0;
+      }
+
+      footer a:hover {
+        color: #58a6ff;
+        transition: color 0.2s ease-in-out;
+      }
+
+      @media (max-width: 600px) {
+        .input-group {
+          flex-direction: column;
+        }
+
+        .input-group input {
+          width: 100%;
+          margin-bottom: 10px;
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1><i class="fab fa-github"></i> GitHub Followers Analyzer</h1>
+        <h4>Descubre quién no te sigue de vuelta</h4>
+      </div>
+
+      <div class="info-text">
+        <p>
+          Para realizar más peticiones a la API de GitHub, puedes utilizar un
+          token de autenticación personal. Con este token, tendrás un límite de
+          5000 peticiones por hora. Sin token, el límite es de solo 60
+          peticiones por hora. Puedes generar tu token en
+          <a href="https://github.com/settings/tokens/new" target="_blank">
+            GitHub Personal Access Tokens
+          </a>
+          . Recuerda mantener tu token privado.
+        </p>
+      </div>
+
+      <div class="form-container">
+        <form class="input-group">
+          <input
+            id="user"
+            type="text"
+            placeholder="Ingresa tu usuario de GitHub"
+            required
+          />
+          <input
+            id="token"
+            type="text"
+            placeholder="Token de GitHub (opcional)"
+          />
+          <button class="submit-btn" type="submit">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </form>
+      </div>
+
+      <div class="stats-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Seguidores</th>
+              <th>Seguidos</th>
+              <th>No te siguen de vuelta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="followers">-</td>
+              <td id="following">-</td>
+              <td id="non-following">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article id="results" class="results-grid"></article>
+    </div>
+    <footer>
+      &copy;
+      <a href="https://github.com/solidsnk86" target="_blank">solidSnk86</a>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
