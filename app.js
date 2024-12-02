@@ -15,7 +15,7 @@ const createHTML = (user, avatar) => `
 `;
 
 function clickSound() {
-  const audio = new Audio("button-click.mp3");
+  const audio = new Audio("public/button-click.mp3");
   if (audio) {
     audio.volume = 0.1;
     audio
