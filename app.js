@@ -1,5 +1,10 @@
 const $errors = document.querySelector("#errors");
-let error = "";
+
+let apiStats = {
+  rateLimit: "",
+  remaingLimit: "",
+};
+
 const imgStyles = [
   "border: 2px solid #f0f0f0",
   "width: 45px",
@@ -57,16 +62,25 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       const response = await fetch(`${url}?per_page=100&page=${page}`, {
         headers,
       });
+
       const rateLimit = response.headers.get("X-RateLimit-Limit");
+      const rateRemaing = response.headers.get("X-Ratelimit-Remaining");
+
       if (!response.ok)
         throw new Error(
-          `HTTP error! status: ${response.status}, Límite API: ${rateLimit} peticiones por hora.`
+          `HTTP error! status: ${response.status}, Límite API: ${rateLimit} peticiones por hora. Peticiones restantes: ${rateRemaing}.`
         );
 
-      error = `Límite de API ${rateLimit}`;
+      apiStats.rateLimit = `Límite de API ${rateLimit}`;
+      apiStats.remaingLimit = `Peticiones restantes: ${rateRemaing}`;
+
       const data = await response.json();
 
       if (data.length === 0) break;
+
+      $errors.textContent = "";
+      apiStats.rateLimit = "";
+      apiStats.remaingLimit = "";
 
       allData.push(...data);
 
@@ -97,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputUser = document.querySelector("#user");
   const inputToken = document.querySelector("#token");
   const form = document.querySelector("form");
+  const stats = document.querySelector("#api-stats");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -159,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       followersPlaceholder.textContent = followers.length;
       followingPlaceholder.textContent = following.length;
       nonFollowingPlaceholder.textContent = nonFollowing.length;
+      stats.textContent = `${apiStats.rateLimit} | ${apiStats.remaingLimit}`;
     } catch (err) {
       console.error("Error al inicializar la aplicación", err);
       $errors.innerHTML = `
@@ -181,9 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
           color: var(--text-color);
           padding: 10px;
         ">
-          No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado.
+          No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado o el límite de la API se ha excedido.
         </p>
-        <p>Límite de API excedido</p>
         </div>
       `;
     }
