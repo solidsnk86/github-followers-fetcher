@@ -67,7 +67,7 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       });
 
       const rateLimit = response.headers.get("X-RateLimit-Limit");
-      const rateRemaing = response.headers.get("X-Ratelimit-Remaining");
+      const rateRemaing = response.headers.get("X-RateLimit-Remaining");
 
       if (!response.ok)
         throw new Error(
