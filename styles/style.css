@@ -295,4 +295,12 @@ footer a:hover {
     margin-bottom: 10px;
     margin-right: 0;
   }
+
+  dialog[open] {
+    width: 90%;
+  }
+
+  .options span {
+    display: none;
+  }
 }
