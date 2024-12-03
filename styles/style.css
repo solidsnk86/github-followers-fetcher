@@ -179,12 +179,12 @@ dialog[open] {
   border: none;
   bottom: calc(45% - 50px);
   left: 0;
-  width: 50%;
+  width: 40%;
   justify-content: center;
   margin: 0 auto;
   background-color: #c9d1d9;
   border-radius: 10px;
-  animation: zoomIn 0.3s ease-in;
+  animation: zoomIn 0.2s ease-in;
   overflow: hidden;
 }
 

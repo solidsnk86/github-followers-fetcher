@@ -111,7 +111,7 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
 document.addEventListener("keydown", (event) => {
   event.preventDefault();
   if (event.ctrlKey && event.key === "k") {
-    dialog.open = true;
+    dialog.show();
   } else if (event.key === "Escape") {
     dialog.close();
   }
@@ -204,6 +204,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       nonFollowing.forEach((user, i) => {
         $article.innerHTML += createHTML(user, nonFollowingAvatar[i]);
+      });
+
+      window.scrollTo({
+        top: document.body.scrollHeight * 0.9,
+        behavior: "smooth",
       });
 
       document.querySelectorAll(".avatars img").forEach((avatar) => {
