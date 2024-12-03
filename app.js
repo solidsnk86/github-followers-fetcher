@@ -1,5 +1,6 @@
 const $errors = document.querySelector("#errors");
 const dialog = document.querySelector("dialog");
+const options = document.getElementById("options");
 const toGithub = document.getElementById("github");
 const toShare = document.getElementById("share");
 const personalWeb = document.getElementById("personal-web");
