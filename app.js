@@ -108,6 +108,11 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
   return allData;
 }
 
+options.onclick = (event) => {
+  event.stopPropagation();
+  dialog.show();
+};
+
 document.addEventListener("keydown", (event) => {
   event.preventDefault();
   if (event.ctrlKey && event.key === "k") {
