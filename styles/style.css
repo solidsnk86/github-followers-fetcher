@@ -200,6 +200,12 @@ dialog header span {
   cursor: pointer;
 }
 
+#share > i,
+#github > i,
+#personal-web > i {
+  margin-right: 4px;
+}
+
 dialog li {
   margin: 0;
   list-style: none;

@@ -108,7 +108,8 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey && event.key === "i") {
+  event.preventDefault();
+  if (event.ctrlKey && event.key === "k") {
     dialog.open = true;
   } else if (event.key === "Escape") {
     dialog.close();
