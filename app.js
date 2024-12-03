@@ -114,8 +114,8 @@ options.onclick = (event) => {
 };
 
 document.addEventListener("keydown", (event) => {
-  event.preventDefault();
-  if (event.ctrlKey && event.key === "k") {
+  event.stopPropagation();
+  if (event.ctrlKey && event.key === "i") {
     dialog.show();
   } else if (event.key === "Escape") {
     dialog.close();
