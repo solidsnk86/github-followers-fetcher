@@ -1,4 +1,9 @@
 const $errors = document.querySelector("#errors");
+const dialog = document.querySelector("dialog");
+const toGithub = document.getElementById("github");
+const toShare = document.getElementById("share");
+const personalWeb = document.getElementById("personal-web");
+const x = document.getElementById("x");
 
 let apiStats = {
   rateLimit: "",
@@ -101,6 +106,42 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
 
   return allData;
 }
+
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey && event.key === "i") {
+    dialog.open = true;
+  } else if (event.key === "Escape") {
+    dialog.close();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (dialog.open && !dialog.contains(event.target)) {
+    dialog.close();
+  }
+});
+
+x.onclick = () => {
+  dialog.close();
+};
+
+toGithub.onclick = () => {
+  window.open("https://github.com/solidsnk86/", "_blank");
+};
+
+toShare.onclick = () => {
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: "Descubre quien no te sigue de vuelta en Github 🐱‍🚀",
+      url: location.href,
+    });
+  }
+};
+
+personalWeb.onclick = () => {
+  window.open("https://personal-portfolio-mgc.vercel.app", "_blank");
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const $article = document.querySelector("article");

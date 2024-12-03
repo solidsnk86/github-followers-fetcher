@@ -52,6 +52,8 @@ body {
   border-radius: 8px;
   margin-bottom: 20px;
   font-size: 0.9rem;
+  text-wrap: pretty;
+  text-align: center;
 }
 
 .info-text a {
@@ -91,6 +93,7 @@ body {
 .submit-btn {
   background-color: #238636;
   color: white;
+  font-weight: 600;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
@@ -147,6 +150,77 @@ body {
   padding: 15px;
   text-align: center;
   color: var(--text-color);
+}
+
+.options {
+  position: fixed;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background-color: #ffffff0c;
+  backdrop-filter: blur(5px);
+  border-radius: 4px;
+}
+
+.options button {
+  border: none;
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+dialog[open] {
+  position: fixed;
+  border: none;
+  bottom: calc(45% - 50px);
+  left: 0;
+  width: 50%;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #c9d1d9;
+  border-radius: 10px;
+  animation: zoomIn 0.3s ease-in;
+  overflow: hidden;
+}
+
+dialog header {
+  width: 100%;
+  padding: 8px;
+  border-bottom: 1px solid #b6bbc2;
+}
+
+dialog header span {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 8px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+dialog li {
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+dialog li:hover {
+  background-color: #aeb5bea8;
+}
+
+@keyframes zoomIn {
+  from {
+    scale: 0.5;
+    transform: translateZ(-30%);
+  }
+  to {
+    scale: 1;
+    transform: translateZ(0);
+  }
 }
 
 .loader {
