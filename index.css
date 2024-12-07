@@ -1,0 +1,62 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: red;
+}
+
+h2 {
+  margin: 20px;
+  color: darkred;
+  font-size: 24px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+h4 {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.calendar-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 10px;
+  max-width: 800px;
+  margin-inline: auto;
+  background-color: tomato;
+  border-radius: 20px;
+}
+
+.calendar-box {
+  background-color: #ff0000;
+  color: #ff9999;
+  font-size: 8px;
+  text-align: left;
+  padding: 2px;
+  border: 1px dashed black;
+}
+
+.calendar-box p {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+::marker {
+  color: transparent;
+}
+
+dialog[open] {
+  position: fixed;
+  top: calc(45% - 50px);
+  left: 0;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #f0f0f0, #aaaaaa);
+  outline: none;
+  border: none;
+  filter: drop-shadow(0 0 5px #000000);
+}
+
+.close-button {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}

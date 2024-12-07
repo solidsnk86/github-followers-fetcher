@@ -1,7 +1,7 @@
 {
   "name": "github-followers-fetcher",
   "version": "1.0.0",
-  "description": "Una aplicación para obtener y mostrar información sobre seguidores y seguidos en GitHub.",
+  "description": "Una aplicación para obtener y mostrar información sobre seguidores, seguidos y no seguidos de un usuario de GitHub.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

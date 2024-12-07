@@ -59,9 +59,11 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
     : {
         Accept: "application/vnd.github.v3+json",
       };
+
   let page = 1;
   const url = `https://api.github.com/users/${user}/${type}`;
   let allData = [];
+
   $errors.textContent = "";
   apiStats.rateLimit = "";
   apiStats.remaingLimit = "";
@@ -90,6 +92,7 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       allData.push(...data);
 
       const linkHeader = response.headers.get("link");
+
       if (linkHeader) {
         const links = linkHeader.split(",").map((link) => link.trim());
         const nextLink = links.find((link) => link.includes('rel="next"'));

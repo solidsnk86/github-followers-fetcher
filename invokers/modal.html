@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/invokers-polyfill@latest/invoker.min.js"></script>
+  </head>
+  <body>
+    <button commandfor="mydialog" command="show-modal">
+      Show modal dialog
+    </button>
+    <dialog id="mydialog">
+      <button commandfor="mydialog" command="close">Close</button>
+      Dialog Content
+    </dialog>
+    <button commandfor="my-img" command="--rotate-left">Rotate left</button>
+    <button commandfor="my-img" command="--rotate-right">Rotate right</button>
+    <img id="my-img" src="favicon.png" alt="[add appropriate alt text here]" />
+  </body>
+</html>
