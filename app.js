@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
       stats.textContent = `${apiStats.rateLimit} | ${apiStats.remaingLimit}`;
     } catch (err) {
       console.error("Error al inicializar la aplicación", err);
+      $article.innerHTML = "";
       $errors.innerHTML = `
         <div style="
           display: flex;
@@ -249,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style="
           width: 100%; 
           text-align: center; 
-          color: var(--text-color);
+          color: tomato;
           padding: 10px;
         ">
           No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado o el límite de la API se ha excedido.
