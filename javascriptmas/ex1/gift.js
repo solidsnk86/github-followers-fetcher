@@ -30,7 +30,7 @@ const gifts = [
 
 function checkDuplicates(item) {
   const items = localStorage.getItem(item);
-  const noDuplicate = new Set([items].sort()).has(item);
+  const noDuplicate = new Set([items]).has(item);
   return noDuplicate;
 }
 
