@@ -192,13 +192,17 @@ dialog header {
   width: 100%;
   padding: 8px;
   border-bottom: 1px solid #b6bbc2;
+  display: flex;
+  justify-content: space-between;
 }
 
 dialog header span {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 8px;
   font-weight: 400;
+  cursor: default;
+  margin-inline: 8px;
+}
+
+dialog header span:last-child {
   cursor: pointer;
 }
 
