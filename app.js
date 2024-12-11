@@ -5,6 +5,7 @@ const toGithub = document.getElementById("github");
 const toShare = document.getElementById("share");
 const personalWeb = document.getElementById("personal-web");
 const x = document.getElementById("x");
+const dialogMessage = document.querySelector(".dialog.message");
 
 let apiStats = {
   rateLimit: "",
@@ -77,11 +78,29 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
       const rateLimit = response.headers.get("X-RateLimit-Limit");
       const rateRemaing = response.headers.get("X-RateLimit-Remaining");
 
-      if (!response.ok)
-        throw new Error(
+      if (!response.ok) {
+        console.error(
           `HTTP error! status: ${response.status}, Límite API: ${rateLimit} peticiones por hora. Peticiones restantes: ${rateRemaing}.`
         );
+      }
 
+      if (response.status === 403) {
+        dialog.innerHTML = `
+        <header>
+        <span>Estado: ${response.status}</span>
+        <span id="x">X</span>
+        </header>
+        <p style="padding: 16px;">El límite de la API es ${rateLimit} peticiones por hora. 
+        Peticiones restantes:<span style="color: tomato; margin-inline: 4px;">${rateRemaing}</span>
+        Deberás hacer uso de tu token!
+        </p>
+        `;
+        dialog.show();
+        setTimeout(() => {
+          location.reload();
+        }, 9000);
+        clearTimeout();
+      }
       apiStats.rateLimit = `Límite de API ${rateLimit}`;
       apiStats.remaingLimit = `Peticiones restantes: ${rateRemaing}`;
 
@@ -152,6 +171,18 @@ toShare.onclick = () => {
 personalWeb.onclick = () => {
   window.open("https://personal-portfolio-mgc.vercel.app", "_blank");
 };
+
+const createDialog = (type, message) => `
+<dialog>
+      <header>
+        <span>${type}</span>
+        <span id="x">X</span>
+      </header>
+      <div>
+        <p>${message}<p>
+      </div>
+    </dialog>
+`;
 
 document.addEventListener("DOMContentLoaded", () => {
   const $article = document.querySelector("article");
@@ -253,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
           color: tomato;
           padding: 10px;
         ">
-          No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado o el límite de la API se ha excedido.
+          No se pudo cargar los datos. Por favor revise su usuario y/o su token, si es que lo ha ingresado.
         </p>
         </div>
       `;
