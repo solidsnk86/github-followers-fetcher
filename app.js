@@ -91,8 +91,7 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
         <span id="x">X</span>
         </header>
         <p style="padding: 16px;">El límite de la API es ${rateLimit} peticiones por hora. 
-        Peticiones restantes:<span style="color: tomato; margin-inline: 4px;">${rateRemaing}</span>
-        Deberás hacer uso de tu token!
+        Peticiones restantes: ${rateRemaing}. Deberás hacer uso de tu token!
         </p>
         `;
         dialog.show();
