@@ -88,10 +88,10 @@ async function getDataFollow(user, type, GITHUB_TOKEN) {
         dialog.innerHTML = `
         <header>
         <span>Estado: ${response.status}</span>
-        <span id="x">X</span>
+        <span></span>
         </header>
         <p style="padding: 16px;">El límite de la API es ${rateLimit} peticiones por hora. 
-        Peticiones restantes: ${rateRemaing}. Deberás hacer uso de tu token!
+        Peticiones restantes: ${rateRemaing}. Deberás hacer uso de tu token! Se recargará la página..
         </p>
         `;
         dialog.show();
