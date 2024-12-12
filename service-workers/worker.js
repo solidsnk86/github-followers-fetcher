@@ -35,13 +35,17 @@ function prubeTypes(str) {
 
 const getApiData = async (user) => {
   let message = "Estado de la solicitud: ";
-  const response = await fetch(
-    `https://neotecs.vercel.app/api/github-stats?username=${user}`
-  );
-  const data = await response.json();
-  if (!response.ok) message += `${response.status} (${response.statusText})`;
-  if (response.ok) {
-    message += `${response.status} ${response.headers}`;
-    return { data, message };
+  try {
+    const response = await fetch(
+      `https://neotecs.vercel.app/api/github-stats?username=${user}`
+    );
+    const data = await response.json();
+    if (!response.ok) message += `${response.status} (${response.statusText})`;
+    if (response.ok) {
+      message += `${response.status} ${response.headers}`;
+      return { data, message };
+    }
+  } catch (err) {
+    console.log("Cannot get the data", err);
   }
 };
