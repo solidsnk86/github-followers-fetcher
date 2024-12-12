@@ -208,6 +208,7 @@ dialog header span:last-child {
 
 #share > i,
 #github > i,
+#benchmark-js > i,
 #personal-web > i {
   margin-right: 8px;
 }
