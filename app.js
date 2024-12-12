@@ -6,6 +6,7 @@ const toShare = document.getElementById("share");
 const personalWeb = document.getElementById("personal-web");
 const x = document.getElementById("x");
 const dialogMessage = document.querySelector(".dialog.message");
+const benchmarkJS = document.getElementById("benchmark-js");
 
 let apiStats = {
   rateLimit: "",
@@ -155,6 +156,10 @@ x.onclick = () => {
 
 toGithub.onclick = () => {
   window.open("https://github.com/solidsnk86/", "_blank");
+};
+
+benchmarkJS.onclick = () => {
+  window.open(`${location.origin}/benchmark-js/index.html`);
 };
 
 toShare.onclick = () => {

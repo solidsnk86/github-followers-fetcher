@@ -2,6 +2,12 @@
 
 Esta aplicación te permite obtener y mostrar información sobre tus seguidores, seguidos y usuarios que no te siguen en GitHub. Utiliza la API de GitHub para obtener los datos y mostrarlos en una tabla bonita y organizada.
 
+| Lenguage                                                                                             | Descripción         |
+| ---------------------------------------------------------------------------------------------------- | ------------------- |
+| ![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white)                | Lenguaje de marcado |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?logo=javascript&logoColor=black) | Programación        |
+| ![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?logo=css3&logoColor=white)                   | Lenguaje de estilo  |
+
 ## Instalación
 
 1. Clona este repositorio en tu máquina local:
