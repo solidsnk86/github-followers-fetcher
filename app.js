@@ -159,7 +159,7 @@ toGithub.onclick = () => {
 };
 
 benchmarkJS.onclick = () => {
-  window.open(`${location.origin}/benchmark-js/index.html`);
+  window.open(`/benchmark-js/index.html`);
 };
 
 toShare.onclick = () => {
