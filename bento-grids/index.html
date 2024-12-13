@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Bento Grid</title>
+    <style>
+      body {
+        background: #1e1e1e;
+        color: white;
+        margin: 0;
+        padding: 16px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+
+      .grid {
+        display: grid;
+        width: 100%;
+        max-width: 800px;
+        margin-inline: auto;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas:
+          "large small small"
+          "small-right small-left large-bottom";
+        gap: 16px;
+      }
+
+      .bento {
+        background: linear-gradient(to top, #242424, #292929);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 10px;
+        transition: scale 0.2s ease-in-out;
+        height: 200px;
+      }
+
+      .bento:last-child {
+        grid-area: span 3 / span 3;
+      }
+
+      .large {
+        grid-area: large;
+      }
+
+      .small-top {
+        grid-area: small;
+      }
+
+      .small-right {
+        grid-area: small-right;
+      }
+
+      .small-left {
+        grid-area: small-left;
+      }
+
+      .large-bottom {
+        grid-area: large-bottom;
+      }
+
+      @media screen and (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          grid-template-areas:
+            "large"
+            "small"
+            "small"
+            "small-right"
+            "small-left"
+            "large-bottom"
+            "extra";
+        }
+
+        .bento {
+          height: 250px;
+        }
+        .bento:last-child {
+          grid-area: span 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="grid">
+      <div class="bento large"></div>
+      <div class="bento small-top"></div>
+      <div class="bento small-top"></div>
+      <div class="bento small-right"></div>
+      <div class="bento small-left"></div>
+      <div class="bento large-bottom"></div>
+      <div class="bento"></div>
+    </main>
+  </body>
+</html>
