@@ -147,6 +147,14 @@ body {
   font-size: 0.8rem;
 }
 
+.stats-table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.stats-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
 .stats-table td {
   padding: 15px;
   text-align: center;
