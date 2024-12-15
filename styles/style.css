@@ -148,11 +148,11 @@ body {
 }
 
 .stats-table th:first-child {
-  border-top-left-radius: 8px;
+  border-top-left-radius: 7px;
 }
 
 .stats-table th:last-child {
-  border-top-right-radius: 8px;
+  border-top-right-radius: 7px;
 }
 
 .stats-table td {
